@@ -14,7 +14,7 @@ const client = new ApolloClient({
 
 const query = gql`
 query {
-  allPersons  {
+  allPeople  {
     name,
     phone,
     address {
