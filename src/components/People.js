@@ -15,7 +15,7 @@ const FIND_PERSON = gql`
   }
 `
 
-const People = props => {
+const People = ({ people }) => {
   const [getPerson, result] = useLazyQuery(FIND_PERSON) 
   const [person, setPerson] = useState(null)
 
@@ -39,12 +39,16 @@ const People = props => {
       </div>
     )
   }  
+  console.log(people);
   return (
     <div>
       <h2>People</h2>
-      {props.people.map(p =>
+      {people.map(p =>
         <div key={p.name}>
           {p.name} {p.phone}
+          <button onClick={() => showPerson(p.name)}>
+            show address
+          </button>
         </div>  
       )}
     </div>

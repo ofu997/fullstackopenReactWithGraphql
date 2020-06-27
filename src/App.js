@@ -5,7 +5,7 @@ import People from './components/People';
 
 const ALL_PEOPLE = gql`
 query {
-  allPeople  {
+  allPersons  {
     name
     phone
     id
@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <People
-        people = { result.data.allPeople } 
+        people = { result.data.allPersons } 
       />
     </div>
   )  
