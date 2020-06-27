@@ -1,32 +1,16 @@
-import { gql, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import React, { useState } from 'react'
-
-const CREATE_PERSON = gql`
-  mutation createPerson($name: String!, $street: String!, $city: String!, $phone: String) {
-    addPerson(
-      name: $name,
-      street: $street, 
-      city: $city,
-      phone: $phone,
-    ) {
-      name
-      phone
-      id
-      address {
-        street
-        city
-      }
-    }
-  }
-`
+import { ALL_PEOPLE, CREATE_PERSON } from '../queries'
 
 const PersonForm = () => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
-
-  const [ createPerson ] = useMutation(CREATE_PERSON)
+  // refetchQueries parameter defines that the query fetching all persons is done again whenever a new person is created
+  const [ createPerson ] = useMutation(CREATE_PERSON, {
+    refetchQueries: [ { query: ALL_PEOPLE }]
+  })
 
   const submit = (event) => {
     event.preventDefault()
