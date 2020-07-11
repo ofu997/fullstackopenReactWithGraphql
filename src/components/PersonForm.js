@@ -8,9 +8,14 @@ const PersonForm = () => {
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
   // refetchQueries parameter defines that the query fetching all persons is done again whenever a new person is created
-  const [ createPerson ] = useMutation(CREATE_PERSON, {
-    refetchQueries: [ { query: ALL_PEOPLE }]
-  })
+  const [ createPerson ] = useMutation(CREATE_PERSON, 
+    {
+      refetchQueries: [ { query: ALL_PEOPLE }],
+      onError: (error) => {
+        setError(error.graphQLErrors[0].message)
+      }
+    }
+  )
 
   const submit = (event) => {
     event.preventDefault()
