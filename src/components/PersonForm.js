@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import React, { useState } from 'react'
 import { ALL_PEOPLE, CREATE_PERSON } from '../queries'
 
-const PersonForm = () => {
+const PersonForm = ({ setError }) => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [street, setStreet] = useState('')
