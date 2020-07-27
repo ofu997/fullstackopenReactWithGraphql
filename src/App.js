@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import './App.css'
 import People from './components/People'
 import PersonForm from './components/PersonForm'
+import PhoneForm from './components/PhoneForm'
 import { ALL_PEOPLE } from './queries'
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     }, 10000)
   }
 
-  const Notify=({errorMesssage})=>{
+  const Notify=({errorMessage})=>{
     if(!errorMessage){
       return null; 
     }
@@ -43,6 +44,9 @@ function App() {
       />
       <PersonForm
         setError={notify}
+      />
+      <PhoneForm
+        notify={notify}
       />
     </div>
   )  
