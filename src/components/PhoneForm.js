@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
 import { EDIT_NUMBER } from '../queries'
-
-const PhoneForm = ({ notify }) => {
+ 
+const PhoneForm = props => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
 
@@ -19,7 +19,7 @@ const PhoneForm = ({ notify }) => {
 
   useEffect(() => {
     if (result.data && result.data.editNumber === null) {
-      notify('person not found')
+      props.notify('person not found')
     }
   }, [result.data]) // eslint-disable-line
 
@@ -29,7 +29,8 @@ const PhoneForm = ({ notify }) => {
 
       <form onSubmit={submit}>
         <div>
-          name <input
+          name 
+          <input
             value={name}
             onChange={({ target }) => setName(target.value)}
           />

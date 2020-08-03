@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { FIND_PERSON } from '../queries';
 
 const People = ({ people }) => {
+  // does not immediately execute its associated query. Instead, it returns a function in its result tuple that you can call whenever you're ready to execute the query
   const [getPerson, result] = useLazyQuery(FIND_PERSON) 
   const [person, setPerson] = useState(null)
 
+  // When a person's "show address" button is clicked, its event handler showPerson is executed, and makes a GraphQL query to fetch the persons details
   const showPerson = (name) => {
     getPerson({ variables: { nameToSearch: name } })
   }
